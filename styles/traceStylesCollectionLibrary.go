@@ -1,7 +1,7 @@
 package styles
 
 // TraceStylesCollectionLibrary holds various predefined collections of trace styles for graphs.
-// It mirrors the styles_library from trace_styles_collection_library.py.
+// Mirrors the styles_library from trace_styles_collection_library.py.
 var TraceStylesCollectionLibrary = map[string]interface{}{ //
 	"default": map[string]interface{}{ //
 		"scatter_spline": map[string]interface{}{ //

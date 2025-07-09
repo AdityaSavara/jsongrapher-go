@@ -1,7 +1,7 @@
 package styles
 
 // LayoutStylesLibrary holds various predefined layout styles for graphs.
-// It mirrors the styles_library from layout_styles_library.py.
+// Mirrors the styles_library from layout_styles_library.py.
 var LayoutStylesLibrary = map[string]interface{}{ //
 	"default": map[string]interface{}{ //
 		"layout": map[string]interface{}{ //

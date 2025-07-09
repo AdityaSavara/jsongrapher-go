@@ -46,8 +46,6 @@ type Marker struct {
 }
 
 // ApplyLayoutStyle applies the layout style previously set in PlotStyle.
-// This method is defined here as per user's request for "applying" functions in style.go.
-// It remains a method on *JSONGrapherRecord because it modifies the record's Layout.
 func (r *JSONGrapherRecord) ApplyLayoutStyle() error {
 	styleName := r.PlotStyle.LayoutStyle
 	if styleName == "" {
@@ -81,8 +79,6 @@ func (r *JSONGrapherRecord) ApplyLayoutStyle() error {
 }
 
 // applyTraceStyle is a helper function to apply a specific trace style from the
-// currently set collection (in r.PlotStyle.TraceStylesCollection) to a single data series.
-// Defined here as an "applying" helper method.
 func (r *JSONGrapherRecord) ApplyTraceStyle(dataSeries *JSONGrapherDataSeries) error {
 	collectionName := r.PlotStyle.TraceStylesCollection
 	if collectionName == "" {
@@ -148,7 +144,6 @@ func (r *JSONGrapherRecord) ApplyTraceStyle(dataSeries *JSONGrapherDataSeries) e
 }
 
 // ApplyTraceStylesToAllDataSeries applies the currently set trace style collection to all data series.
-// Defined here as an "applying" function.
 func (r *JSONGrapherRecord) ApplyTraceStylesToAllDataSeries() error {
 	for i := range r.Data {
 		err := r.ApplyTraceStyle(&r.Data[i])
@@ -160,7 +155,6 @@ func (r *JSONGrapherRecord) ApplyTraceStylesToAllDataSeries() error {
 }
 
 // ApplyTraceStyleToDataSeriesAtIndex applies the currently set trace style collection to a single data series by index.
-// Defined here as an "applying" function.
 func (r *JSONGrapherRecord) ApplyTraceStyleToDataSeriesAtIndex(index int) error {
 	if index < 0 || index >= len(r.Data) {
 		return fmt.Errorf("index %d out of bounds for data series (0 to %d)", index, len(r.Data)-1)

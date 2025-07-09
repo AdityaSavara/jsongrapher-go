@@ -16,7 +16,6 @@ type JSONGrapherRecord struct {
 }
 
 // PlotStyle represents the structure for plot-wide styling, including layout and trace style collections.
-// Moved here because its "setting" methods are now in record.go
 type PlotStyle struct {
 	LayoutStyle           string `json:"layout_style,omitempty"`
 	TraceStylesCollection string `json:"trace_styles_collection,omitempty"`
@@ -74,18 +73,18 @@ func (r *JSONGrapherRecord) SetYAxisLabelIncludingUnits(labelWithUnits string) {
 
 // SetLayoutStyle sets the 'layout_style' field within PlotStyle.
 // This function only sets the string name, it does not apply the style immediately.
-// Moved to record.go as per user's request for all "setting" functions.
 func (r *JSONGrapherRecord) SetLayoutStyle(styleName string) {
 	r.PlotStyle.LayoutStyle = styleName
 }
 
 // SetTraceStylesCollection sets the 'trace_styles_collection' field within PlotStyle.
 // This function only sets the string name, it does not apply the styles immediately.
-// Moved to record.go as per user's request for all "setting" functions.
 func (r *JSONGrapherRecord) SetTraceStylesCollection(collectionName string) {
 	r.PlotStyle.TraceStylesCollection = collectionName
 }
 
+// This function writes the JSONGrapherRecord to file.
+// Typically, file name string should include ".json" at the end.
 func (r *JSONGrapherRecord) WriteToFile(filename string) error {
 	jsonOutput, err := json.MarshalIndent(r, "", "    ")
 	if err != nil {
@@ -94,6 +93,7 @@ func (r *JSONGrapherRecord) WriteToFile(filename string) error {
 	return os.WriteFile(filename, jsonOutput, 0644)
 }
 
+// This function pretty prints the JSONGrapherRecord
 func (r *JSONGrapherRecord) Print() error {
 	jsonOutput, err := json.MarshalIndent(r, "", "    ")
 	if err != nil {
