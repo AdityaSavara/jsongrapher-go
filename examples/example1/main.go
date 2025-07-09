@@ -1,12 +1,11 @@
 package main
 
 import (
-	// Import your new jsonrecord package
-	jr "github.com/AdityaSavara/jsongrapher-go/jsonrecord" // IMPORTANT: Replace YourGitHubUsername. Using 'jg' alias for brevity.
+	jgr "github.com/AdityaSavara/jsongrapher-go/jsonrecord"
 )
 
 func main() {
-	record := jr.CreateNewJSONGrapherRecord()
+	record := jgr.CreateNewJSONGrapherRecord()
 
 	record.SetComments("CH4 Activation over Perovskite Catalysts")
 	record.SetDatatype("CO2_Adsorption___Differential_Enthalpy")
@@ -35,27 +34,18 @@ func main() {
 		22.37963, 25.72857, 18.84665,
 	}
 
-	dataSeries := jr.JSONGrapherDataSeries{
+	dataSeries := jgr.JSONGrapherDataSeries{
 		Name:       "LaFeO3",
-		TraceStyle: "scatter_spline", // This now only sets the string name for the series
+		TraceStyle: "scatter_spline",
 		X:          xValues,
 		Y:          yValues,
 	}
 
 	record.AddDataSeries(dataSeries)
 	record.Print()
-	record.WriteToFile("LaFeO3.json") // Changed filename to reflect styling
-
-	// --- Layout style setting and application ---
-	record.SetLayoutStyle("Nature") // // Sets the layout style name in PlotStyle
-	//  return
-	// }
-
-	// --- Trace style setting and application ---
-	record.SetTraceStylesCollection("default") // Corrected function name
-	//  return
-	// }
-
-	record.WriteToFile("LaFeO3_styled.json") // Changed filename to reflect styling
+	record.WriteToFile("LaFeO3.json")
+	record.SetLayoutStyle("Nature")
+	record.SetTraceStylesCollection("default")
+	record.WriteToFile("LaFeO3_styled.json")
 
 }
